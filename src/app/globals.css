@@ -1,26 +1,516 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #FBFBFA;
+  --foreground: #141416;
+  --card: #FFFFFF;
+  --card-foreground: #141416;
+  --popover: #FFFFFF;
+  --popover-foreground: #141416;
+  --primary: #141416;
+  --primary-foreground: #FBFBFA;
+  --secondary: #F4F4F5;
+  --secondary-foreground: #141416;
+  --muted: #F4F4F5;
+  --muted-foreground: #6B7280;
+  --accent: #F4F4F5;
+  --accent-foreground: #141416;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #E5E5E7;
+  --input: #E5E5E7;
+  --ring: #71717A;
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: #FBFBFA;
+  --sidebar-foreground: #141416;
+  --sidebar-primary: #141416;
+  --sidebar-primary-foreground: #FBFBFA;
+  --sidebar-accent: #F4F4F5;
+  --sidebar-accent-foreground: #141416;
+  --sidebar-border: #E5E5E7;
+  --sidebar-ring: #71717A;
+}
+
+.dark {
+  --background: #0D0D0F;
+  --foreground: #F4F4F6;
+  --card: #161619;
+  --card-foreground: #F4F4F6;
+  --popover: #161619;
+  --popover-foreground: #F4F4F6;
+  --primary: #F4F4F6;
+  --primary-foreground: #0D0D0F;
+  --secondary: #222226;
+  --secondary-foreground: #F4F4F6;
+  --muted: #222226;
+  --muted-foreground: #9CA3AF;
+  --accent: #222226;
+  --accent-foreground: #F4F4F6;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: #26262B;
+  --input: #26262B;
+  --ring: #A1A1AA;
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: #121215;
+  --sidebar-foreground: #F4F4F6;
+  --sidebar-primary: #3B82F6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #222226;
+  --sidebar-accent-foreground: #F4F4F6;
+  --sidebar-border: #26262B;
+  --sidebar-ring: #A1A1AA;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+    scroll-padding-top: 5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================================================
+   Apple-inspired Subtle, Premium Animations
+   Strictly transform & opacity, cubic-bezier easing
+   ========================================================= */
+
+@keyframes navEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroPortraitEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobileMenuSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrance Animation Classes */
+.animate-nav-entrance {
+  animation: navEntrance 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-label {
+  animation: heroFadeIn 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0ms;
+}
+
+.animate-hero-heading {
+  animation: heroFadeUp 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 90ms;
+}
+
+.animate-hero-description {
+  animation: heroFadeUp 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 180ms;
+}
+
+.animate-hero-cta {
+  animation: heroFadeUp 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 270ms;
+}
+
+.animate-hero-status {
+  animation: heroFadeIn 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 360ms;
+}
+
+.animate-hero-portrait {
+  animation: heroPortraitEntrance 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 180ms;
+}
+
+.animate-mobile-menu {
+  animation: mobileMenuSlide 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Nav Link Hover Underline Animation */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: color 200ms ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* =========================================================
+   About Section: Apple-inspired Scroll Reveal
+   Strictly transform & opacity, cubic-bezier(0.16, 1, 0.3, 1)
+   Duration: 650ms - 750ms
+   ========================================================= */
+
+@keyframes aboutFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-about-header {
+  animation: aboutFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0ms;
+}
+
+.animate-about-heading {
+  animation: aboutFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 80ms;
+}
+
+.animate-about-intro {
+  animation: aboutFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 160ms;
+}
+
+.animate-about-col-0 {
+  animation: aboutFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 240ms;
+}
+
+.animate-about-col-1 {
+  animation: aboutFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 340ms;
+}
+
+.animate-about-tag-0 {
+  animation: aboutFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 420ms;
+}
+
+.animate-about-tag-1 {
+  animation: aboutFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 490ms;
+}
+
+.animate-about-tag-2 {
+  animation: aboutFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 560ms;
+}
+
+.animate-about-footer {
+  animation: aboutFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 640ms;
+}
+
+/* =========================================================
+   Featured Projects Section: Apple-inspired Scroll Reveal
+   Strictly transform & opacity, cubic-bezier(0.16, 1, 0.3, 1)
+   Duration: 650ms - 750ms
+   ========================================================= */
+
+@keyframes projectFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-project-reveal-badge {
+  animation: projectFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0ms;
+}
+
+.animate-project-reveal-heading {
+  animation: projectFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 80ms;
+}
+
+.animate-project-reveal-desc {
+  animation: projectFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 160ms;
+}
+
+.animate-project-reveal-link {
+  animation: projectFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 240ms;
+}
+
+.animate-project-card-0 {
+  animation: projectFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 100ms;
+}
+
+.animate-project-card-1 {
+  animation: projectFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 220ms;
+}
+
+.animate-project-card-2 {
+  animation: projectFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 340ms;
+}
+
+/* =========================================================
+   Tech Stack Section: Subtle, Premium Animations
+   Strictly transform & opacity, cubic-bezier easing
+   ========================================================= */
+
+@keyframes techFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tech-reveal-label {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0ms;
+}
+
+.animate-tech-reveal-heading {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 70ms;
+}
+
+.animate-tech-reveal-desc {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 140ms;
+}
+
+/* 4 Cards with Stagger Delay and 650ms duration (within 600-800ms) */
+.animate-tech-card-0 {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 200ms;
+}
+
+.animate-tech-card-1 {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 280ms;
+}
+
+.animate-tech-card-2 {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 360ms;
+}
+
+.animate-tech-card-3 {
+  animation: techFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 440ms;
+}
+
+/* =========================================================
+   Contact / Footer Section: Apple-inspired Smooth Animations
+   Strictly transform & opacity, cubic-bezier(0.16, 1, 0.3, 1)
+   Duration: 650ms - 750ms
+   ========================================================= */
+
+@keyframes footerFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes footerFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-footer-top {
+  animation: footerFadeIn 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0ms;
+}
+
+.animate-footer-heading {
+  animation: footerFadeUp 750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 120ms;
+}
+
+.animate-footer-desc {
+  animation: footerFadeUp 750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 240ms;
+}
+
+.animate-footer-bottom {
+  animation: footerFadeIn 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 360ms;
+}
+
+/* Accessible Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  .animate-nav-entrance,
+  .animate-hero-label,
+  .animate-hero-heading,
+  .animate-hero-description,
+  .animate-hero-cta,
+  .animate-hero-status,
+  .animate-hero-portrait,
+  .animate-mobile-menu,
+  .animate-about-header,
+  .animate-about-heading,
+  .animate-about-intro,
+  .animate-about-col-0,
+  .animate-about-col-1,
+  .animate-about-tag-0,
+  .animate-about-tag-1,
+  .animate-about-tag-2,
+  .animate-about-footer,
+  .animate-project-reveal-badge,
+  .animate-project-reveal-heading,
+  .animate-project-reveal-desc,
+  .animate-project-reveal-link,
+  .animate-project-card-0,
+  .animate-project-card-1,
+  .animate-project-card-2,
+  .animate-tech-reveal-label,
+  .animate-tech-reveal-heading,
+  .animate-tech-reveal-desc,
+  .animate-tech-card-0,
+  .animate-tech-card-1,
+  .animate-tech-card-2,
+  .animate-tech-card-3,
+  .animate-footer-top,
+  .animate-footer-heading,
+  .animate-footer-desc,
+  .animate-footer-bottom {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .nav-link::after {
+    transition: none !important;
+  }
 }
