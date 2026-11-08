@@ -197,19 +197,6 @@ export function FeaturedProjects() {
           </p>
         </div>
 
-        <div
-          className={`pt-1 md:pt-0 shrink-0 ${
-            shouldAnimate ? "animate-project-reveal-link" : "opacity-0"
-          }`}
-        >
-          <a
-            href="#projects"
-            className="group/link inline-flex items-center gap-1.5 text-sm sm:text-base font-medium text-zinc-950 dark:text-zinc-50 border-b border-zinc-950 dark:border-zinc-50 pb-0.5 hover:text-zinc-600 dark:hover:text-zinc-300 hover:border-zinc-600 dark:hover:border-zinc-300 transition-colors"
-          >
-            <span>View All Projects</span>
-            <ArrowRight className="w-4 h-4 ml-0.5 transition-transform duration-200 group-hover/link:translate-x-0.5" />
-          </a>
-        </div>
       </div>
 
       {/* 3 Project Cards Grid: Staggered Fade-Up with Restrained Mockup Parallax */}
