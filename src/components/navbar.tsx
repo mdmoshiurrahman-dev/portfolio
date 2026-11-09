@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, Download } from "lucide-react";
 
 interface NavItem {
   label: string;
@@ -139,7 +139,7 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right Actions: Theme Toggle & Let's Talk CTA */}
+        {/* Right Actions: Theme Toggle & Download CV CTA */}
         <div className="hidden md:flex items-center gap-4">
           {/* Animated Theme Toggle Button */}
           <button
@@ -166,12 +166,14 @@ export function Navbar() {
             />
           </button>
 
-          {/* Let's Talk Button */}
+          {/* Download CV Button */}
           <a
-            href="#contact"
-            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 bg-transparent hover:border-zinc-900 dark:hover:border-zinc-200 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
+            href="/Moshiur_CV.pdf"
+            download="Moshiur_CV.pdf"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 bg-transparent hover:border-zinc-900 dark:hover:border-zinc-200 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
           >
-            Let&apos;s Talk
+            <Download className="w-4 h-4" />
+            <span>Download CV</span>
           </a>
         </div>
 
@@ -231,11 +233,13 @@ export function Navbar() {
             })}
             <div className="pt-2">
               <a
-                href="#contact"
+                href="/Moshiur_CV.pdf"
+                download="Moshiur_CV.pdf"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 hover:border-zinc-900 dark:hover:border-zinc-200 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all duration-200"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 hover:border-zinc-900 dark:hover:border-zinc-200 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all duration-200"
               >
-                Let&apos;s Talk
+                <Download className="w-4 h-4" />
+                <span>Download CV</span>
               </a>
             </div>
           </nav>
