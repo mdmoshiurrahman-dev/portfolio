@@ -75,7 +75,7 @@ export function Contact() {
             href="#home"
             className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-zinc-950 dark:text-zinc-50 hover:opacity-80 transition-opacity"
           >
-            Reyad.
+            MOSHIUR.
           </Link>
 
           {/* Social Links with Subtle Pill State and Directional Arrow */}
@@ -85,7 +85,7 @@ export function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile"
-              className="group inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-200/60 dark:bg-zinc-800 text-zinc-950 dark:text-zinc-50 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-all duration-200"
+              className="group inline-flex items-center gap-1 px-3 py-1.5 rounded-lg   text-zinc-950 dark:text-zinc-50 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-all duration-200"
             >
               <span>GitHub</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[2] transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -108,6 +108,16 @@ export function Contact() {
               className="group inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 text-sm font-medium transition-all duration-200"
             >
               <span>Email</span>
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2] transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a
+              href="tel:+880 1560-061794"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+              className="group inline-flex items-center gap-1 px-3 py-1.5 rounded-lg   text-zinc-950 dark:text-zinc-50 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-all duration-200"
+            >
+              <span>Phone</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[2] transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>

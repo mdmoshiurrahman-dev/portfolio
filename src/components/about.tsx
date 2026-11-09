@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { Bookmark } from "lucide-react";
 
 const emptySubscribe = () => () => {};
 
@@ -134,7 +135,60 @@ export function About() {
       {/* Hairline Divider */}
       <div className="border-t border-zinc-200/80 dark:border-zinc-800 my-8 sm:my-12" />
 
-      {/* 3. Bottom Row: 3 Highlights / Taglines */}
+      {/* 3. Education: My Academic Journey */}
+      <div id="education" className="py-2 sm:py-4">
+        {/* Eyebrow & Main Heading */}
+        <div className="text-center mb-8 sm:mb-10">
+          <p
+            className={`text-xs sm:text-[13px] font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 mb-2 sm:mb-3 ${
+              shouldAnimate ? "animate-about-edu-header" : "opacity-0"
+            }`}
+          >
+            EDUCATION
+          </p>
+
+          <h3
+            className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 ${
+              shouldAnimate ? "animate-about-edu-heading" : "opacity-0"
+            }`}
+          >
+            My Academic Journey
+          </h3>
+        </div>
+
+        {/* Education Card */}
+        <div className="flex justify-center">
+          <div
+            className={`w-full max-w-[340px] sm:max-w-[370px] bg-white dark:bg-zinc-900/90 rounded-xl border border-zinc-200/80 dark:border-zinc-800 border-l-[4px] border-l-[#23543e] dark:border-l-emerald-500 p-5 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 ${
+              shouldAnimate ? "animate-about-edu-card" : "opacity-0"
+            }`}
+          >
+            <div>
+              <h4 className="text-base sm:text-lg font-bold text-zinc-950 dark:text-zinc-50 tracking-tight leading-snug">
+                Diploma in Engineering
+              </h4>
+              <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+                Electrical Technology
+              </p>
+              <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">
+                Sirajganj Polytechnic Institute
+              </p>
+            </div>
+
+            <div className="mt-6 flex items-center gap-2.5">
+              <Bookmark className="w-4 h-4 fill-[#23543e] text-[#23543e] dark:fill-emerald-500 dark:text-emerald-500 shrink-0" />
+              <span className="text-xs sm:text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                Currently Studying
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Hairline Divider */}
+      <div className="border-t border-zinc-200/80 dark:border-zinc-800 my-8 sm:my-12" />
+
+      {/* 4. Bottom Row: 3 Highlights / Taglines */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
         {/* Highlight 1 */}
         <div
